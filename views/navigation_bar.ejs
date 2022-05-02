@@ -1,0 +1,54 @@
+<script>
+    $('#nav_bar').ready(function () {
+        (async function () {
+
+            let nav_bar = document.getElementById('nav_bar');
+
+            let isLoggedIn = localStorage.getItem('is_logged') === 'yes';
+            let username = localStorage.getItem('username');
+            let role = null;
+
+            let navigationInfo = await fetchUserData('/navigation/data');
+            let navInfo = await navigationInfo.json();
+
+
+            let li = document.createElement('li');
+            nav_bar.appendChild(li);
+
+        })();
+    });
+
+</script>
+
+
+<ul id="nav_bar" class="navbar-nav ml-auto">
+    <li></li>
+    <li class="nav-item active" id="nav-home">
+        <a class="nav-link" onClick="loadHome()">Home <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item" id="nav-about">
+        <a class="nav-link" onClick="loadAbout(); displayAbout();">About</a>
+    </li>
+    <li class="nav-item" id="nav-gallery">
+        <a class="nav-link" onClick="loadGallery(); displayImages();">gallery </a>
+    </li>
+    <li class="nav-item" id="nav-management">
+        <a class="nav-link" onClick="loadManagement(); displayManagement();">Management </a>
+    </li>
+    <li class="nav-item" id="nav-contact">
+        <a class="nav-link" onClick="loadContact(); displayContact();">contact </a>
+    </li>
+    <li class="nav-item">
+        <a id="logout-tab" onclick="logout()" class="nav-link">logout </a>
+    </li>
+    <li class="nav-item" style="display: flex;">
+        <a class="nav-link" style="color:skyblue; text-align:center;">Hello</a>
+    </li>
+    <li class="nav-item">
+        <a id="login-tab" class="nav-link" href="#login" data-toggle="modal" data-target=".log-sign">login </a>
+    </li>
+    <li class="nav-item">
+    <a id="signup-tab" class="nav-link" href="#signup" data-toggle="modal" data-target=".log-sign2">signup </a>
+    </li>
+</ul>
+
