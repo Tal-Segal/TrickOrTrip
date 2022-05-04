@@ -24,6 +24,11 @@
         $(document).ready(function () {
             // Load navigation
             $('#nav-bar').load('/navigation');
+
+            // Load initial body
+            if (!location.hash) {
+                $('#body').load('/about_us');
+            }
         });
     </script>
 </head>
@@ -46,9 +51,6 @@
 
 </nav>
 
-<!-- Login popup -->
-
-
 <!-- Log In -->
 <div class="modal fade bs-modal-sm log-sign" id="myModal" tabindex="-1" role="dialog"
      aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -61,13 +63,12 @@
                         <form class="form-horizontal" id="loginForm" name="loginForm" action="/login" method="post">
                             <fieldset>
                                 <!-- Sign In Form -->
-                                <!-- Text input-->
 
+                                <!-- Text input-->
                                 <div class="group">
                                     <input id="username" name="username" required="" class="input" type="text"><span
                                         class="highlight"></span><span class="bar"></span>
                                     <label class="label" for="username">Username</label></div>
-
 
                                 <!-- Password input-->
                                 <div class="group">
@@ -111,13 +112,13 @@
                     <div class="active tab-pane in" id="sign-up">
                         <form class="form-horizontal" id="signupForm" name="signupForm" method="post">
                             <fieldset>
-                                <!-- Sign In Form -->
+                                <!-- Sign Up Form -->
+
                                 <!-- Text input-->
                                 <div class="group">
                                     <input id="username2" name="username" required="" class="input" type="text"><span
                                         class="highlight"></span><span class="bar"></span>
                                     <label class="label" for="username">Username</label></div>
-
 
                                 <!-- Password input-->
                                 <div class="group">
@@ -300,7 +301,7 @@
                         <li class="hidden">/</li>
                         <li><a href="about_us.ejs">About-us</a></li>
                         <li class="hidden">/</li>
-                        <li><a href="views/gallery.html">Gallery</a></li>
+                        <li><a href="views/gallery.ejs">Gallery</a></li>
                         <li class="hidden">/</li>
                         <li><a href="views/contact.ejs">Contact</a></li>
                     </ul>

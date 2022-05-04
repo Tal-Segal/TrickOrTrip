@@ -14,14 +14,18 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-app.use('/users', managementRouter);
-app.use('/flowers', galleryRoutes);
+//Routes
+app.use('/management', managementRouter);
+app.use('/gallery', galleryRoutes);
 app.use('/navigation', navigationRouter);
 app.use('/', homeRouter);
 
 
+// Website Icon
 app.use(express.static(path.join(__dirname, '')));
 app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')))
+
+
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());

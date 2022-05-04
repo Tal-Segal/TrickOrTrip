@@ -5,7 +5,7 @@ const mongo = require("mongoose");
 let db = mongo.createConnection();
 (async () => {
     try {
-        await db.openUri('mongodb://localhost/myfirstdatabase');
+        await db.openUri('mongodb://localhost:27017/myfirstdatabase');
     } catch (err) {
         debug("An error occurred while connecting to DB: " + err);
     }

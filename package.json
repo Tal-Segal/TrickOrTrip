@@ -2,7 +2,7 @@
   "name": "trick_or_trip",
   "version": "1.0.0",
   "description": "",
-  "main": "run_website.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

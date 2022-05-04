@@ -3,7 +3,7 @@ const management_service = require("../services/management_service.js");
 const navigation_service = require("../services/navigation_service.js");
 
 const getNavigationBar = (req, res) => {
-    res.render("navigation_bar");
+    res.render("navigation");
 }
 
 const getNavigationInfo = async (req, res) => {
@@ -23,6 +23,7 @@ const getNavigationInfo = async (req, res) => {
             info = navigation_service.getEmployeeView();
         }
     }
+
     res.json(info);
 }
 

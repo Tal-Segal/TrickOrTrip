@@ -1,0 +1,85 @@
+<script>
+    /*
+    $('#nav_bar').ready(function () {
+        (async function () {
+
+            let nav_bar = document.getElementById('nav_bar');
+
+            let isLoggedIn = localStorage.getItem('is_logged') === 'yes';
+            let username = localStorage.getItem('username');
+            let username_role = localStorage.getItem('role');
+            //let role = null;
+
+            let navigationInfo = await fetchUserData('/navigation/info');
+            let navInfo = await navigationInfo.json();
+
+            navInfo.forEach(function (item, index) {
+                let li = document.createElement('li');
+                li.className = 'nav-item';
+                let a = document.createElement('a');
+                a.id = item.id;
+                a.className = 'nav-link';
+                a.ariaCurrent = 'page';
+                a.href = item.href;
+                a.url = item.url;
+                a.innerText = item.text;
+
+                // Add user name for load users file
+                if (item.id === 'users') {
+                    item.url = item.url + '?username=' + localStorage.getItem('username');
+                }
+
+                // Load the view inside body div by attribute 'url' on each nav bar item link
+                a.onclick = function (event) {
+                    $('li a').removeClass('active');
+                    $(this).addClass('active');
+                    $('#body').load(item.url);
+                }
+
+                // Reload handle - load body by the hash in location
+                if (location.hash === item.href) {
+                    a.className = 'nav-link active';
+                    $('#body').load(item.url);
+                }
+
+                li.appendChild(a);
+                nav_bar.appendChild(li);
+            });
+
+        })();
+    });
+     */
+</script>
+
+
+<ul id="nav_bar" class="navbar-nav ml-auto">
+    <li></li>
+    <li class="nav-item active" id="nav-home">
+        <a class="nav-link">Home <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item" id="nav-about">
+        <a class="nav-link">About Us</a>
+    </li>
+    <li class="nav-item" id="nav-gallery">
+        <a class="nav-link">Gallery </a>
+    </li>
+    <li class="nav-item" id="nav-management">
+        <a class="nav-link">Management </a>
+    </li>
+    <li class="nav-item" id="nav-contact">
+        <a class="nav-link">Contact </a>
+    </li>
+    <li class="nav-item">
+        <a id="logout-tab" onclick="logout()" class="nav-link">logout </a>
+    </li>
+    <li class="nav-item" style="display: flex;">
+        <a class="nav-link" style="color:skyblue; text-align:center;">Hello</a>
+    </li>
+    <li class="nav-item">
+        <a id="login-tab" class="nav-link" href="#login" data-toggle="modal" data-target=".log-sign">login </a>
+    </li>
+    <li class="nav-item">
+    <a id="signup-tab" class="nav-link" href="#signup" data-toggle="modal" data-target=".log-sign2">signup </a>
+    </li>
+</ul>
+
