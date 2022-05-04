@@ -14,10 +14,9 @@ module.exports = db => {
 
 
     schema.statics.GET_ALL = async function() {
-        // check validity
-        alert("here");
-        console.log("I'm here");
-        return this.find({}).filter(user => user.isValid === true).exec();
+        const args = [...arguments];
+        return this.find(...args).exec();
+
     };
 
     schema.statics.ADD = async function(user) {

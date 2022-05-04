@@ -5,8 +5,8 @@ const router = express.Router();
 const { login } = require('../controllers/login_controller.js');
 router.post('/login', login);
 
-const { signup } = require('../controllers/signup_controller.js');
-router.post('/signup', signup);
+const { addUser } = require('../controllers/management_controller.js');
+router.post('/signup', addUser);
 
 
 const { getHomeView, getAboutUsView, getContactView } = require('../controllers/home_controller.js');

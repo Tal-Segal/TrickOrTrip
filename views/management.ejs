@@ -1,0 +1,158 @@
+<script src="public/utils/addUser.js"></script>
+<script src="javascripts/deleteUser.js"></script>
+<script src="javascripts/updateUser.js"></script>
+
+
+<body>
+<!-- Management-Section -->
+<section class="management-page" id="management-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 left-side" id="management-content2">
+                <h2>Active users<a href="javascript:" id="refresh">         <i onclick="reload()" style="color: #8d8d8d; font-size: x-large" class="fa fa-refresh"></i></a></h2>
+                <div class="row">
+
+
+                    <!--if(role=="admin")
+                    {
+                    $.each(arrItems, function (i, user) {
+                    if (user.isValid === 'yes') {
+                    mhtml += '<div class="col-md-6">';
+                        mhtml += '<figure class="figure">';
+                            mhtml += '<img src="' + user.image + '" class="figure-img img-fluid" alt="A generic square placeholder image with rounded corners in a figure.">';
+                            mhtml += '<figcaption class="figure-caption"><img src="/images/comment.png" alt=""><span>45</span>';
+                                mhtml += '</figcaption>';
+                            mhtml += '</figure>';
+                        mhtml += '</div>';
+                    mhtml += '<div class="col-md-6">';
+                        mhtml += '<h4>' + user.username + "</a></h4>";
+                        mhtml += '<h6>' + "Role: " + user.role + "</a></h6>";
+                        mhtml += '<br/>';
+                        mhtml += '<h6>' + "password:  " + user.password + "</a></h6>";
+                        mhtml += '<br/>';
+                        mhtml += '<div class="btn-group">';
+                            mhtml += '<button value="'+user.username+'" onclick="deleteUser(this)" class="btn btn-primary" style="background-color: gray"><i class="fa fa-trash" aria-hidden="true"></i> Delete </button>';
+                            mhtml += '<button value="'+user.username+'" class="btn btn-primary" onclick="sendUserToModal(this)" data-toggle="modal" data-target="#myModal2" ><i class="fa fa-pencil" aria-hidden="true"></i> Edit </button>';
+
+                            mhtml += '</div>';
+                        mhtml += '<p>Registered on ' + user.date + ' </p>';
+                        mhtml += '</div>';
+                    }
+                    });
+                    }
+                    if(role=="employee")
+                    {
+                    $.each(arrItems, function (i, user) {
+                    if (user.isValid === 'yes' && user.role != 'admin' ) {
+                    mhtml += '<div class="col-md-6">';
+                        mhtml += '<figure class="figure">';
+                            mhtml += '<img src="' + user.image + '" class="figure-img img-fluid" alt="A generic square placeholder image with rounded corners in a figure.">';
+                            mhtml += '<figcaption class="figure-caption"><img src="/images/comment.png" alt=""><span>45</span>';
+                                mhtml += '</figcaption>';
+                            mhtml += '</figure>';
+                        mhtml += '</div>';
+                    mhtml += '<div class="col-md-6">';
+                        mhtml += '<h4>' + user.username + "</a></h4>";
+                        mhtml += '<h6>' + "Role: " + user.role + "</a></h6>";
+                        mhtml += '<br/>';
+                        mhtml += '<div class="btn-group">';
+                            mhtml += '<button value="'+user.username+'" onclick="deleteUser(this)" class="btn btn-primary" style="background-color: gray"><i class="fa fa-trash" aria-hidden="true"></i> Delete </button>';
+                            mhtml += '<button value="'+user.username+'" class="btn btn-primary" onclick="sendUserToModal(this)" data-toggle="modal" data-target="#myModal2" ><i class="fa fa-pencil" aria-hidden="true"></i> Edit </button>';
+                            mhtml += '</div>';
+                        mhtml += '<p>Registered on ' + user.date + ' </p>';
+                        mhtml += '</div>';
+                    }
+                    });
+                    }
+                    if(role=="costumer")
+                    {
+                    $.each(arrItems, function (i, user) {
+                    if (user.isValid === 'yes' && user.role === 'costumer' ) {
+                    mhtml += '<div class="col-md-6">';
+                        mhtml += '<figure class="figure">';
+                            mhtml += '<img src="' + user.image + '" class="figure-img img-fluid" alt="A generic square placeholder image with rounded corners in a figure.">';
+                            mhtml += '<figcaption class="figure-caption"><img src="/images/comment.png" alt=""><span>45</span>';
+                                mhtml += '</figcaption>';
+                            mhtml += '</figure>';
+                        mhtml += '</div>';
+                    mhtml += '<div class="col-md-6">';
+                        mhtml += '<h4>' + user.username + "</a></h4>";
+                        mhtml += '<h6>' + "Role: " + user.role + "</a></h6>";
+                        mhtml += '<br/>';
+                        mhtml += '<div class="btn-group">';
+                            mhtml += '<button value="'+user.username+'" onclick="deleteUser(this)" class="btn btn-primary" style="background-color: gray"><i class="fa fa-trash" aria-hidden="true"></i> Delete </button>';
+                            mhtml += '<button value="'+user.username+'" class="btn btn-primary" onclick="sendUserToModal(this)" data-toggle="modal" data-target="#myModal2" ><i class="fa fa-pencil" aria-hidden="true"></i> Edit </button>';
+                            mhtml += '</div>';
+                        mhtml += '<p>Registered on ' + user.date + ' </p>';
+                        mhtml += '</div>';
+                    }
+                    });
+                    } -->
+                    </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="right-side">
+                            <h3>Add user</h3>
+                            <figure>
+                                <img src="public/images/banner-image-2.jpg" alt="">
+                            </figure>
+                            <form id="addUserForm" method="post" class="form" role="form" name="addUserForm" action="/addUser">
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-6 form-group">
+                                        <input class="form-control" id="username" name="username" placeholder="Username"
+                                               type="text" required/>
+                                    </div>
+                                    <div class="col-xs-6 col-md-6 form-group">
+                                        <input class="form-control" id="password" name="password" placeholder="Password"
+                                               type="password" required/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-6 form-group">
+                                        <input class="form-control" id="role" name="role" placeholder="Role" type="text"
+                                               list="roles" required/>
+                                        <datalist id="roles">
+                                            <option value="Admin">
+                                            <option value="Employee">
+                                            <option value="Customer">
+                                        </datalist>
+                                    </div>
+                                    <div class="col-xs-6 col-md-6 form-group">
+                                        <input class="form-control" id="image" style="display: none" name="image"
+                                               placeholder="Image" type="file" required/>
+                                        <label for="image" class="form-control">Choose image</label>
+                                    </div>
+                                </div>
+                                <!--<textarea class="form-control" id="message" name="message" placeholder="Message" rows="5"></textarea>-->
+                                <br/>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-12 form-group">
+                                        <button class="btn btn-primary" onclick="addUser(form)">Add</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row bt">
+            <div class="col-sm-12">
+                <ul>
+                    <li><a class="active" href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/.Management-Section -->
+</body>

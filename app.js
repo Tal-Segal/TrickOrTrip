@@ -57,16 +57,16 @@ app.use(session({
 //passport.serializeUser(login.serializeUser());
 //passport.deserializeUser(login.deserializeUser());
 
-
+/*
 app.post('/login', passport.authenticate('local', { failureRedirect: '/' }),  function(req, res) {
     // console.log(req.user);
     res.redirect('/home');
 });
 
-app.post('/signup', function(req, res) {
+app.post('/addUser', function(req, res) {
     res.redirect('/home');
 });
-
+*/
 
 
 const cors = require("cors");

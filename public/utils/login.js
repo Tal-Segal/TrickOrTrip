@@ -4,7 +4,9 @@ async function login() {
     let form = document.getElementById('loginForm');
     let formdata = new URLSearchParams(new FormData(form));
     try {
+        // check is user exists
         let response = await fetch("/login", {method: "post", body: formdata});
+
         if (response.ok) {
             localStorage.setItem('username', formdata.get('username'));
             localStorage.setItem('logged', 'yes');

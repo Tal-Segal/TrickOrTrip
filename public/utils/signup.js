@@ -1,10 +1,14 @@
 const service = require("/services/management_service.js");
 
-async function signup() {
-    let form = document.getElementById('signupForm');
+async function signup(form) {
+    //let form = document.getElementById('signupForm');
     let formdata = new URLSearchParams(new FormData(form));
     try {
-        let response = await fetch("/signup", {method: "post", body: formdata});
+
+        // sign up is for customers only
+        formdata.append('role', 'customer');
+
+        let response = await fetch("/addUser", {method: "post", body: formdata});
         if (response.ok) {
             localStorage.setItem('username', formdata.get('username'));
             localStorage.setItem('logged', 'yes');
