@@ -2,7 +2,7 @@
   "name": "trick_or_trip",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,10 +15,12 @@
     "debug": "^4.3.4",
     "express": "^4.18.1",
     "mongoose": "^6.3.2",
+    "morgan": "^1.10.0",
     "passport": "^0.5.2",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express-session": "^1.17.2",
     "multer": "^1.4.4"

@@ -1,4 +1,4 @@
-async function fetchUserData(url) {
+/*async function fetchUserData(url) {
     let currentUser = localStorage.getItem('username');
     let response = await fetchWithTimeout(url + '?username=' + currentUser, options);
     if (response.ok) {
@@ -15,12 +15,12 @@ async function fetchWithTimeout(resource, options = {}) {
         signal: controller.signal
     });
 }
-
+*/
 /*
 var SUCCESS_MSG_TIME = 2000;
 var TIME_OUT = 5000;
 
-async function fetchUserData(url, options = {}, needAck) {
+async function fetchData(url, options = {}, needAck) {
     try {
         if (needAck) { showLoadingModal(); }
         let currentUser = localStorage.getItem('username');

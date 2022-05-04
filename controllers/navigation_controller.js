@@ -1,4 +1,3 @@
-// require("../utils/manage_access.js");
 const management_service = require("../services/management_service.js");
 const navigation_service = require("../services/navigation_service.js");
 

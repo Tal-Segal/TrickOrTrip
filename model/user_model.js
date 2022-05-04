@@ -1,4 +1,5 @@
 const mongo = require("mongoose");
+const debug = require("debug");
 
 module.exports = db => {
 
@@ -14,7 +15,9 @@ module.exports = db => {
 
     schema.statics.GET_ALL = async function() {
         // check validity
-        return this.find({}).filter(user => user.isValid === true);
+        alert("here");
+        console.log("I'm here");
+        return this.find({}).filter(user => user.isValid === true).exec();
     };
 
     schema.statics.ADD = async function(user) {
@@ -39,4 +42,5 @@ module.exports = db => {
     };
 
     db.model('User', schema);
+    debug("user_model created successfully");
 };

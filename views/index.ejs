@@ -8,6 +8,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>TrickOrTrip</title>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -19,23 +30,24 @@
     <link rel="stylesheet" href="public/css/animate.css">
     <link rel="stylesheet" href="public/css/main.css">
     <link rel="stylesheet" href="public/css/index.css">
-
+    <script src="public/utils/login.js"></script>
+    <script src="public/utils/signup.js.js"></script>
+    <script src="public/utils/logout.js"></script>
     <script>
         $(document).ready(function () {
             // Load navigation
-            $('#nav-bar').load('/navigation');
-
-            // Load initial body
-            if (!location.hash) {
-                $('#body').load('/about_us');
-            }
+            $('#nav_bar').load('/navigation');
         });
+
+        if (!location.hash) {
+            $('#page_content').load('/home');
+        }
     </script>
 </head>
 
 <body>
 <!--Navbar -->
-<nav id="nav-bar" class="navbar navbar-expand-lg navbar-dark cyan fixed-top">
+<nav id="navigation-bar" class="navbar navbar-expand-lg navbar-dark cyan fixed-top">
     <div class="container">
         <a class="navbar-brand" href="views/index.ejs">
             <img src="public/images/nav-logo.png" alt="nav-logo">
@@ -44,14 +56,21 @@
                 aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-4"></div>
 
-        </div>
+        <!-- menu -->
+        <div id="nav_bar"></div>
+
     </div>
-
 </nav>
+<!--/.Navbar -->
 
-<!-- Log In -->
+
+<!-- Body -->
+<div id="page_content"></div>
+
+
+<!--/.Log In -->
 <div class="modal fade bs-modal-sm log-sign" id="myModal" tabindex="-1" role="dialog"
      aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
@@ -110,7 +129,7 @@
                 <div id="myTabContent3" class="tab-content">
 
                     <div class="active tab-pane in" id="sign-up">
-                        <form class="form-horizontal" id="signupForm" name="signupForm" method="post">
+                        <form class="form-horizontal" id="signupForm" name="signupForm" action='/signup' method="post">
                             <fieldset>
                                 <!-- Sign Up Form -->
 
@@ -128,13 +147,13 @@
                                 </div>
                                 <em>minimum 6 characters</em>
 
-                                <!-- Date input-->
+                                <!-- Image input-->
                                 <div class="group">
-                                    <label class="label">Birth Date</label>
+                                    <label class="label">Image</label>
                                     <br />
-                                    <input id="date" name="date" required="" class="input" type="date"><span
+                                    <input id="image" name="image" required="" class="input" type="file"><span
                                         class="highlight"></span><span class="bar"></span>
-                                    <label class="label" for="date"></label>
+                                    <label class="label" for="image"></label>
                                 </div>
                                 <em>minimum 6 characters</em>
 
@@ -232,8 +251,6 @@
     </div>
 </div>
 
-<!--/.Navbar -->
-
 <!--Carousel Wrapper-->
 <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
     <!--Slides-->
@@ -285,10 +302,32 @@
         <!--Container-->
         <div class="container">
             <h2>Recent Trips</h2>
-            <div class="row text-center text-lg-left" id="footer-content">
-
+            <div class="row text-center text-lg-left">
+                <div class="col-lg-2 col-md-4 col-xs-6">
+                    <a href="#" class="d-block h-100"><img class="img-fluid img-thumbnail"
+                                                           src="public/images/banner-image-1.jpg" alt=""></a>
+                </div>
+                <div class="col-lg-2 col-md-4 col-xs-6">
+                    <a href="#" class="d-block h-100"><img class="img-fluid img-thumbnail"
+                                                           src="public/images/banner-image-2.jpg" alt=""></a>
+                </div>
+                <div class="col-lg-2 col-md-4 col-xs-6">
+                    <a href="#" class="d-block h-100"><img class="img-fluid img-thumbnail"
+                                                           src="public/images/banner-image-3.jpg" alt=""></a>
+                </div>
+                <div class="col-lg-2 col-md-4 col-xs-6">
+                    <a href="#" class="d-block h-100"><img class="img-fluid img-thumbnail"
+                                                           src="public/images/banner-image-4.jpg" alt=""></a>
+                </div>
+                <div class="col-lg-2 col-md-4 col-xs-6">
+                    <a href="#" class="d-block h-100"><img class="img-fluid img-thumbnail"
+                                                           src="public/images/banner-image-2.jpg" alt=""></a>
+                </div>
+                <div class="col-lg-2 col-md-4 col-xs-6">
+                    <a href="#" class="d-block h-100"><img class="img-fluid img-thumbnail"
+                                                           src="public/images/banner-image-1.jpg" alt=""></a>
+                </div>
             </div>
-
         </div>
         <!-- /.container -->
     </section>
@@ -299,9 +338,9 @@
                     <ul>
                         <li><a href="views/index.ejs">Home</a></li>
                         <li class="hidden">/</li>
-                        <li><a href="about_us.ejs">About-us</a></li>
+                        <li><a href="views/about_us.ejs">About Us</a></li>
                         <li class="hidden">/</li>
-                        <li><a href="views/gallery.ejs">Gallery</a></li>
+                        <li><a onclick="$('#nav_bar').load('/navigation')">Gallery</a></li>
                         <li class="hidden">/</li>
                         <li><a href="views/contact.ejs">Contact</a></li>
                     </ul>
@@ -315,21 +354,11 @@
 <!-- Return to Top -->
 <a href="javascript:" id="return-to-top"><i class="fa fa-long-arrow-up" aria-hidden="true"></i></a>
 
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <!-- Custom JavaScript -->
 <script src="public/utils/animate.js"></script>
 <script src="public/utils/custom.js"></script>
-<script src="run_website.js"></script>
+<script src="app.js"></script>
 
 
 <script>
