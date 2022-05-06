@@ -1,7 +1,6 @@
 const service = require("/services/management_service.js");
 
 async function signup(form) {
-    //let form = document.getElementById('signupForm');
     let formdata = new URLSearchParams(new FormData(form));
     try {
 

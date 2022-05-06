@@ -11,7 +11,8 @@ const getNavigationInfo = async (req, res) => {
 
     let user = await management_service.getUserByUsername(req.query.username);
 
-    console.log("username: " + req.query.username);
+    console.log("user: " + user);
+    console.log("username: " + req);
 
     if (user !== undefined) {
         if (user.role === "customer") {

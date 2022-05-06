@@ -27,8 +27,8 @@
                 $("#nav-item").attr('class', 'nav-item');*/
 
 
-                // Add user name for load users file
-                if (bar_item.id === 'users') {
+                // Add username to url (later use it for access purposes in getNavigationInfo)
+                if (bar_item.id === 'management') {
                     bar_item.url = bar_item.url + '?username=' + localStorage.getItem('username');
                 }
 
@@ -53,6 +53,15 @@
             if (isLogged === 'yes') {
                 let li = document.createElement('li');
                 li.className = 'nav-item';
+
+                /*
+                color: #f9e43f;
+                background-color: rgba(255, 255, 255, .1);
+                */
+                li.style.color = "#f9e43f";
+
+
+
                 let a = document.createElement('a');
                 a.href = "";
                 a.id = "logout-tab";
