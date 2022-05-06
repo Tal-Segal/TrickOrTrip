@@ -7,9 +7,11 @@ const getNavigationBar = (req, res) => {
 
 const getNavigationInfo = async (req, res) => {
 
-    let info = navigation_service.getDefaultView();
+    let info = navigation_service.getAdminView();
 
     let user = await management_service.getUserByUsername(req.query.username);
+
+    console.log("username: " + req.query.username);
 
     if (user !== undefined) {
         if (user.role === "customer") {

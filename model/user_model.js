@@ -14,9 +14,7 @@ module.exports = db => {
 
 
     schema.statics.GET_ALL = async function() {
-        const args = [...arguments];
-        return this.find(...args).exec();
-
+        return this.find({}).exec();
     };
 
     schema.statics.ADD = async function(user) {
@@ -36,8 +34,9 @@ module.exports = db => {
         return this.findByIdAndUpdate(id, args);
     };
 
-    schema.statics.GET_BY_USERNAME = async function (username) {
-        return this.where('username', username);
+    schema.statics.GET_BY_USERNAME = async function () {
+        const args = [...arguments];
+        return this.find({ 'username': args[0] }).exec();
     };
 
     db.model('User', schema);

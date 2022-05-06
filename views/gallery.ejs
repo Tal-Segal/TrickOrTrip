@@ -1,33 +1,65 @@
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="public/utils/addPoster.js"></script>
+
+<script>
+    $(document).ready(function() {
+        let imagesPreview = function(input, placeToInsertImagePreview) {
+            if (input.files) {
+                let filesAmount = input.files.length;
+                for (let i = 0; i < filesAmount; i++) {
+                    let reader = new FileReader();
+                    reader.onload = function(event) {
+                        $($.parseHTML("<img>"))
+                            .attr("src", event.target.result)
+                            .appendTo(placeToInsertImagePreview);
+                    };
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+        };
+        $("#file").on("change", function() {
+            imagesPreview(this, "div.preview-images");
+        });
+    });
+</script>
 <script>
     $('#gallery-content').ready(function () {
         (async function () {
             let posters_div = document.getElementById('gallery-content');
-            let response = await fetchData('/gallery/data');
+            let response = await fetch('/gallery/data');
             let posters = await response.json();
-            posters.forEach(function (poster, index) {
-                let columnDiv = document.createElement('div');
-                columnDiv.className = 'col';
-                let cardDiv = document.createElement('div');
-                cardDiv.className = 'card text-center h-300';
-                let image = document.createElement('img');
-                image.setAttribute('src', poster.image);
-                image.className = 'card-img-top';
-                let bodyDiv = document.createElement('div');
-                let name = document.createElement('h5');
-                name.className = 'card-title custom-header';
-                name.innerText = poster.name;
-                let price = document.createElement('p');
-                price.innerText = poster.price + '$';
-                price.className = 'custom-btn w-150 mx-auto';
-                let color = document.createElement('span');
-                color.className = 'dot';
-                color.style = 'background-color:' + poster.color;
 
-                bodyDiv.append(name, price, color);
-                cardDiv.append(image, bodyDiv);
-                columnDiv.appendChild(cardDiv);
-                posters_div.appendChild(columnDiv);
+            <!-- Posters Preview -->
+
+            let rowDiv = document.createElement('div');
+            rowDiv.className = 'row';
+
+            posters.forEach(function (poster, index) {
+                let box = document.createElement('a');
+                box.className = 'col-xl-6 col-md-4 box-1';
+
+                let img = document.createElement('img');
+                img.src = poster.source;
+                img.className = "img-fluid";
+
+                let descriptionAndDateDiv = document.createElement('div');
+                descriptionAndDateDiv.className = "overlay";
+
+                let descriptionDiv = document.createElement('div');
+                descriptionDiv.className = "text";
+                descriptionDiv.innerText = poster.description;
+
+                let dateDiv = document.createElement('div');
+                dateDiv.className = "count";
+                dateDiv.innerText = poster.creation_date;
+
+                descriptionAndDateDiv.appendChild(descriptionDiv);
+                descriptionAndDateDiv.appendChild(dateDiv);
+                box.append(img, descriptionAndDateDiv);
+                rowDiv.appendChild(box);
             });
+            posters_div.appendChild(rowDiv);
         })();
     });
 </script>
@@ -41,22 +73,22 @@
             <h2>Recently Added Photographs</h2>
             <div class="row justify-content-center">
                 <div class="col-md-12 col-12" id="gallery-div" name="gallery-div">
-
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-8 mt-3">
-                                <form class="mt-4"
-                                      action="/upload"
-                                      method="POST"
-                                      enctype="multipart/form-data">
+                                <form class="mt-4" action="/addPoster" role="form" method="POST" enctype="multipart/form-data">
                                     <div class="form-group">
-                                        <input
-                                                type="file"
-                                                name="file"
-                                                id="input-files"
-                                                class="form-control-file border"/>
+                                        <input type="file" name="file" id="file" class="form-control-file border" required />
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <div class="form-group">
+                                        <input class="form-control" id="description" name="description" placeholder="Description"
+                                               type="text" required/>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" id="creation_date" name="creation_date" placeholder="Creation Date"
+                                               type="date" required/>
+                                    </div>
+                                    <button type="submit" onclick="addPoster(form)" class="btn btn-primary">Submit</button>
                                 </form>
                             </div>
                         </div>
@@ -67,31 +99,16 @@
                             </div>
                         </div>
                     </div>
-                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-                    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-                    <script>
-                        $(document).ready(function() {
-                            let imagesPreview = function(input, placeToInsertImagePreview) {
-                                if (input.files) {
-                                    let filesAmount = input.files.length;
-                                    for (i = 0; i < filesAmount; i++) {
-                                        let reader = new FileReader();
-                                        reader.onload = function(event) {
-                                            $($.parseHTML("<img>"))
-                                                .attr("src", event.target.result)
-                                                .appendTo(placeToInsertImagePreview);
-                                        };
-                                        reader.readAsDataURL(input.files[i]);
-                                    }
-                                }
-                            };
-                            $("#input-files").on("change", function() {
-                                imagesPreview(this, "div.preview-images");
-                            });
-                        });
-                    </script>
                 </div>
             </div>
+
+            <!-- Posters Preview -->
+            <div class="row">
+                <a href=img.ref data-toggle="lightbox" data-gallery="example-gallery" class="col-xl-6 col-md-4 box-1">
+
+                </a>
+            </div>
+
         </div>
     </section>
     <!--/.Portfolio-Section -->

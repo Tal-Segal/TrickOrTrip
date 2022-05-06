@@ -10,8 +10,7 @@ module.exports = db => {
 
 
     schema.statics.GET_ALL = async function() {
-        // check validity
-        return this.find({});
+        return this.find({}).exec();
     };
 
     schema.statics.ADD = async function(poster) {

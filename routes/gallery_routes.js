@@ -6,6 +6,6 @@ const { getGalleryView, getAllPosters, addPoster } = require('../controllers/gal
 
 router.get('/', getGalleryView);
 router.get('/data', getAllPosters);
-// router.post('/add', upload.single('image'), addFlower);
+router.post('/add', addPoster);
 
 module.exports = router;

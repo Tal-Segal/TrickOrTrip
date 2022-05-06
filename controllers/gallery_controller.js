@@ -6,9 +6,10 @@ const getAllPosters = async (req, res) => {
 
 const addPoster = async (req, res) => {
     let body = req.body;
-    let imageUrl = req.file ? 'images/' + req.file.filename : body.source;
-    let poster = [imageUrl, body.description, body.creation_date];
+    //let imageUrl = req.file ? 'images/' + req.file.filename : body.poster.source;
+    let poster = [req.file, body.description, body.creation_date];
     await service.addPoster(poster);
+
 }
 
 const getGalleryView = (req, res) => {

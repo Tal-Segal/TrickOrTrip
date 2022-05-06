@@ -38,7 +38,7 @@ async function getUserByUsername(username) {
         let user = await model.GET_BY_USERNAME(username);
         return user === [] ? undefined : user[0];
     } catch (err) {
-        debug(`Error getting user by id: ${err}`);
+        debug(`Error getting user by username: ${err}`);
     }
 }
 
