@@ -5,11 +5,6 @@
 
             let nav_bar = document.getElementById('nav_bar');
 
-            let isLoggedIn = localStorage.getItem('logged') === 'yes';
-            let username = localStorage.getItem('username');
-            let username_role = localStorage.getItem('role');
-            //let role = null;
-
             let navigationInfo = await fetch('/navigation/info');
             let navInfo = await navigationInfo.json();
 
@@ -18,12 +13,19 @@
                 li.className = 'nav-item';
 
                 let a = document.createElement('a');
-                //a.id = bar_item.id;
+                a.id = bar_item.id;
                 a.className = 'nav-link';
                 //a.ariaCurrent = 'page';
                 a.href = bar_item.href;
                 a.url = bar_item.url;
                 a.textContent = bar_item.description;
+
+                /*$('li').addClass('nav-item');
+                $('a').addClass('nav-link');
+
+                $(bar_item.id).attr('class', 'nav-link');
+                $("#nav-item").attr('class', 'nav-item');*/
+
 
                 // Add user name for load users file
                 if (bar_item.id === 'users') {
@@ -37,14 +39,58 @@
                     $('#page_content').load(bar_item.url);
                 }
 
-                /*if (location.hash === bar_item.href) {
+                if (location.hash === bar_item.href) {
                     a.className = 'nav-link active';
                     $('#page_content').load(bar_item.url);
-                }*/
+                }
 
                 li.appendChild(a);
                 nav_bar.appendChild(li);
             });
+
+            // Add logout button if user is logged
+            let isLogged = localStorage.getItem('logged');
+            if (isLogged === 'yes') {
+                let li = document.createElement('li');
+                li.className = 'nav-item';
+                let a = document.createElement('a');
+                a.href = "";
+                a.id = "logout-tab";
+                a.className = 'nav-link';
+                a.innerText = "Logout";
+                a.onclick = function () {
+                    $('li a').removeClass('active');
+                    $(this).addClass('active');
+                    $('#page_content').load('/home');
+                    localStorage.setItem('logged', 'no');
+                    localStorage.setItem('role', null);
+                }
+                li.appendChild(a);
+                nav_bar.appendChild(li);
+            }
+            // Add login button if user isn't logged
+            else {
+                let li = document.createElement('li');
+                li.className = 'nav-item';
+                let a = document.createElement('a');
+                a.href = "#login";
+                a.id = "login-tab";
+                a.className = 'nav-link';
+                a.innerText = "Login";
+                li.appendChild(a);
+                nav_bar.appendChild(li);
+
+                a.onclick = function () {
+                    $('li a').removeClass('active');
+                    $(this).addClass('active');
+                }
+                $('#login-tab').attr('data-target','.log-sign');
+                $('#login-tab').attr('data-toggle','modal');
+
+            }
+
+
+
 
         })();
     });
@@ -56,6 +102,7 @@
 <ul id="nav_bar" class="navbar-nav ml-auto">
 
     <li></li>
+    <!--
     <li class="nav-item active" id="nav-home">
         <a class="nav-link">Home <span class="sr-only">(current)</span></a>
     </li>
@@ -83,6 +130,7 @@
     <li class="nav-item">
     <a id="signup-tab" class="nav-link" href="#signup" data-toggle="modal" data-target=".log-sign2">signup </a>
     </li>
+    -->
 
 </ul>
 

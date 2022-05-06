@@ -1,8 +1,8 @@
-home_page = {'id': 'home', 'href': '#home', 'url': '/home', 'description': 'home'};
-management_page = {'id': 'management', 'href': '#management', 'url': '/management', 'description': 'management'};
-gallery_page = {'id': 'gallery', 'href': '#gallery', 'url': '/gallery', 'description': 'gallery'};
-about_us_page = {'id': 'about_us', 'href': '#about_us', 'url': '/about_us', 'description': 'about us'};
-contact_page = {'id': 'contact', 'href': '#contact', 'url': '/contact', 'description': 'contact'};
+home_page = {'id': 'home', 'href': '#home', 'url': '/home', 'description': 'Home'};
+management_page = {'id': 'management', 'href': '#management', 'url': '/management', 'description': 'Management'};
+gallery_page = {'id': 'gallery', 'href': '#gallery', 'url': '/gallery', 'description': 'Gallery'};
+about_us_page = {'id': 'about_us', 'href': '#about_us', 'url': '/about_us', 'description': 'About'};
+contact_page = {'id': 'contact', 'href': '#contact', 'url': '/contact', 'description': 'Contact'};
 
 const getDefaultView = () => {
     return [

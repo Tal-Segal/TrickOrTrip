@@ -1,6 +1,105 @@
 <script src="public/utils/addUser.js"></script>
-<script src="javascripts/deleteUser.js"></script>
-<script src="javascripts/updateUser.js"></script>
+<script>
+    $('#management-content').ready(function () {
+        (async function () {
+            let users_div = document.getElementById('management-content');
+            let response = await fetch('/management/data');
+            let users = await response.json();
+
+            <!-- Users Preview -->
+            let title = document.createElement('h2');
+            title.innerText = "Active Users";
+            let a = document.createElement('a');
+            a.href = "javascript:";
+            a.id = "refresh";
+            let i = document.createElement('i');
+            i.onclick = reload();
+            i.style.color = "#8d8d8d";
+            i.style.fontSize = "x-large";
+            i.className = "fa fa-refresh";
+            a.appendChild(i);
+            title.appendChild(a);
+
+            let rowDiv = document.createElement('div');
+            rowDiv.className = 'row';
+
+            users.forEach(function (user, index) {
+                let first_div = document.createElement('div');
+                first_div.className = 'col-md-6';
+
+                let figure = document.createElement('figure');
+                figure.className = 'figure';
+
+                let img = document.createElement('img');
+                img.src = user.image;
+                img.className = "figure-img img-fluid";
+                img.alt = "A generic square placeholder image with rounded corners in a figure.";
+
+                let caption = document.createElement('figcaption');
+                caption.className = "figure-caption";
+                let img2 = document.createElement('img');
+                img2.src = "/public/images/comment.png";
+                img2.alt = "";
+                let span = document.createElement('span');
+                span.innerText = "45";
+                caption.appendChild(span);
+
+                figure.append(img, caption);
+                first_div.appendChild(figure);
+
+                let second_div = document.createElement('div');
+                second_div.className = 'col-md-6';
+
+                let h4 = document.createElement('h4');
+                h4.innerText = user.username;
+                let h6 = document.createElement('h6');
+                h6.innerText = user.role;
+                let space = document.createElement('br');
+                let h6_2 = document.createElement('h6');
+                h6_2.innerText = user.password;
+                let space2 = document.createElement('br');
+
+                let innerDiv = document.createElement('div');
+                innerDiv.className = "btn-group";
+                let button1 = document.createElement('button');
+                button1.value = user.username;
+                button1.onclick = deleteUser(this);
+                button1.className = "btn btn-primary";
+                button1.style.backgroundColor = "gray";
+                let i = document.createElement('i');
+                i.className = "fa fa-trash";
+                i.setAttribute('aria-hidden', 'true');
+                button1.innerText = "Delete";
+                button1.appendChild(i);
+                let button2 = document.createElement('button');
+                button2.value = user.username;
+                button2.onclick = sendUserToModal(this);
+                //button2.data = "modal"; //?
+                //button2.data = "#myModal2"; //?
+                button2.className = "btn btn-primary";
+                button2.style.backgroundColor = "gray";
+                let i_2 = document.createElement('i');
+                i_2.className = "fa fa-pencil";
+                i_2.setAttribute('aria-hidden', 'true');
+                button2.innerText = "Edit";
+                button2.appendChild(i_2);
+
+                innerDiv.append(button1, button2);
+
+                let p = document.createElement('p');
+                p.innerText = "Registered on " + user.start_date;
+
+                second_div.append(h4, h6, space, h6_2, space2, innerDiv, p);
+            });
+
+            users_div.appendChild(title);
+            users_div.appendChild(rowDiv);
+        })();
+    });
+</script>
+
+
+</script>
 
 
 <body>
@@ -9,86 +108,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-12 left-side" id="management-content2">
-                <h2>Active users<a href="javascript:" id="refresh">         <i onclick="reload()" style="color: #8d8d8d; font-size: x-large" class="fa fa-refresh"></i></a></h2>
+                <h2>Active users<a href="javascript:" id="refresh"> <i onclick="reload()" style="color: #8d8d8d; font-size: x-large" class="fa fa-refresh"></i></a></h2>
                 <div class="row">
 
-
-                    <!--if(role=="admin")
-                    {
-                    $.each(arrItems, function (i, user) {
-                    if (user.isValid === 'yes') {
-                    mhtml += '<div class="col-md-6">';
-                        mhtml += '<figure class="figure">';
-                            mhtml += '<img src="' + user.image + '" class="figure-img img-fluid" alt="A generic square placeholder image with rounded corners in a figure.">';
-                            mhtml += '<figcaption class="figure-caption"><img src="/images/comment.png" alt=""><span>45</span>';
-                                mhtml += '</figcaption>';
-                            mhtml += '</figure>';
-                        mhtml += '</div>';
-                    mhtml += '<div class="col-md-6">';
-                        mhtml += '<h4>' + user.username + "</a></h4>";
-                        mhtml += '<h6>' + "Role: " + user.role + "</a></h6>";
-                        mhtml += '<br/>';
-                        mhtml += '<h6>' + "password:  " + user.password + "</a></h6>";
-                        mhtml += '<br/>';
-                        mhtml += '<div class="btn-group">';
-                            mhtml += '<button value="'+user.username+'" onclick="deleteUser(this)" class="btn btn-primary" style="background-color: gray"><i class="fa fa-trash" aria-hidden="true"></i> Delete </button>';
-                            mhtml += '<button value="'+user.username+'" class="btn btn-primary" onclick="sendUserToModal(this)" data-toggle="modal" data-target="#myModal2" ><i class="fa fa-pencil" aria-hidden="true"></i> Edit </button>';
-
-                            mhtml += '</div>';
-                        mhtml += '<p>Registered on ' + user.date + ' </p>';
-                        mhtml += '</div>';
-                    }
-                    });
-                    }
-                    if(role=="employee")
-                    {
-                    $.each(arrItems, function (i, user) {
-                    if (user.isValid === 'yes' && user.role != 'admin' ) {
-                    mhtml += '<div class="col-md-6">';
-                        mhtml += '<figure class="figure">';
-                            mhtml += '<img src="' + user.image + '" class="figure-img img-fluid" alt="A generic square placeholder image with rounded corners in a figure.">';
-                            mhtml += '<figcaption class="figure-caption"><img src="/images/comment.png" alt=""><span>45</span>';
-                                mhtml += '</figcaption>';
-                            mhtml += '</figure>';
-                        mhtml += '</div>';
-                    mhtml += '<div class="col-md-6">';
-                        mhtml += '<h4>' + user.username + "</a></h4>";
-                        mhtml += '<h6>' + "Role: " + user.role + "</a></h6>";
-                        mhtml += '<br/>';
-                        mhtml += '<div class="btn-group">';
-                            mhtml += '<button value="'+user.username+'" onclick="deleteUser(this)" class="btn btn-primary" style="background-color: gray"><i class="fa fa-trash" aria-hidden="true"></i> Delete </button>';
-                            mhtml += '<button value="'+user.username+'" class="btn btn-primary" onclick="sendUserToModal(this)" data-toggle="modal" data-target="#myModal2" ><i class="fa fa-pencil" aria-hidden="true"></i> Edit </button>';
-                            mhtml += '</div>';
-                        mhtml += '<p>Registered on ' + user.date + ' </p>';
-                        mhtml += '</div>';
-                    }
-                    });
-                    }
-                    if(role=="costumer")
-                    {
-                    $.each(arrItems, function (i, user) {
-                    if (user.isValid === 'yes' && user.role === 'costumer' ) {
-                    mhtml += '<div class="col-md-6">';
-                        mhtml += '<figure class="figure">';
-                            mhtml += '<img src="' + user.image + '" class="figure-img img-fluid" alt="A generic square placeholder image with rounded corners in a figure.">';
-                            mhtml += '<figcaption class="figure-caption"><img src="/images/comment.png" alt=""><span>45</span>';
-                                mhtml += '</figcaption>';
-                            mhtml += '</figure>';
-                        mhtml += '</div>';
-                    mhtml += '<div class="col-md-6">';
-                        mhtml += '<h4>' + user.username + "</a></h4>";
-                        mhtml += '<h6>' + "Role: " + user.role + "</a></h6>";
-                        mhtml += '<br/>';
-                        mhtml += '<div class="btn-group">';
-                            mhtml += '<button value="'+user.username+'" onclick="deleteUser(this)" class="btn btn-primary" style="background-color: gray"><i class="fa fa-trash" aria-hidden="true"></i> Delete </button>';
-                            mhtml += '<button value="'+user.username+'" class="btn btn-primary" onclick="sendUserToModal(this)" data-toggle="modal" data-target="#myModal2" ><i class="fa fa-pencil" aria-hidden="true"></i> Edit </button>';
-                            mhtml += '</div>';
-                        mhtml += '<p>Registered on ' + user.date + ' </p>';
-                        mhtml += '</div>';
-                    }
-                    });
-                    } -->
-                    </div>
+                </div>
             </div>
 
             <div class="col-lg-6 col-md-12">
@@ -100,7 +123,8 @@
                             <figure>
                                 <img src="public/images/banner-image-2.jpg" alt="">
                             </figure>
-                            <form id="addUserForm" method="post" class="form" role="form" name="addUserForm" action="/addUser">
+                            <form id="addUserForm" method="post" class="form" role="form" name="addUserForm"
+                                  action="/addUser">
                                 <div class="row">
                                     <div class="col-xs-6 col-md-6 form-group">
                                         <input class="form-control" id="username" name="username" placeholder="Username"
