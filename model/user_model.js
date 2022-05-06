@@ -14,7 +14,7 @@ module.exports = db => {
 
 
     schema.statics.GET_ALL = async function() {
-        return this.find({}).exec();
+        return this.find({ 'isValid': true }).exec();
     };
 
     schema.statics.ADD = async function(user) {
@@ -25,8 +25,7 @@ module.exports = db => {
 
     schema.statics.DELETE = async function (id) {
         //return this.findByIdAndDelete(id);
-
-        // check validity
+        // check validity :
         return this.findByIdAndUpdate(id, { isValid: false });
     };
 
@@ -36,7 +35,7 @@ module.exports = db => {
 
     schema.statics.GET_BY_USERNAME = async function () {
         const args = [...arguments];
-        return this.find({ 'username': args[0] }).exec();
+        return this.find({ 'username': args[0], 'isValid': true }).exec();
     };
 
     db.model('User', schema);

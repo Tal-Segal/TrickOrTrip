@@ -2,26 +2,11 @@
 <script>
     $('#management-content').ready(function () {
         (async function () {
-            let users_div = document.getElementById('management-content');
+            let users_div = document.getElementById('management-content2');
             let response = await fetch('/management/data');
             let users = await response.json();
 
             <!-- Users Preview -->
-            let title = document.createElement('h2');
-            title.innerText = "Active Users";
-            let a = document.createElement('a');
-            a.href = "javascript:";
-            a.id = "refresh";
-            let i = document.createElement('i');
-            i.onclick = reload();
-            i.style.color = "#8d8d8d";
-            i.style.fontSize = "x-large";
-            i.className = "fa fa-refresh";
-            a.appendChild(i);
-            title.appendChild(a);
-
-            let rowDiv = document.createElement('div');
-            rowDiv.className = 'row';
 
             users.forEach(function (user, index) {
                 let first_div = document.createElement('div');
@@ -56,14 +41,14 @@
                 h6.innerText = user.role;
                 let space = document.createElement('br');
                 let h6_2 = document.createElement('h6');
-                h6_2.innerText = user.password;
+                h6_2.innerText = "Password: " + user.password;
                 let space2 = document.createElement('br');
 
                 let innerDiv = document.createElement('div');
                 innerDiv.className = "btn-group";
                 let button1 = document.createElement('button');
                 button1.value = user.username;
-                button1.onclick = deleteUser(this);
+                //button1.onclick = deleteUser(this);
                 button1.className = "btn btn-primary";
                 button1.style.backgroundColor = "gray";
                 let i = document.createElement('i');
@@ -73,7 +58,7 @@
                 button1.appendChild(i);
                 let button2 = document.createElement('button');
                 button2.value = user.username;
-                button2.onclick = sendUserToModal(this);
+                //button2.onclick = sendUserToModal(this);
                 //button2.data = "modal"; //?
                 //button2.data = "#myModal2"; //?
                 button2.className = "btn btn-primary";
@@ -90,16 +75,13 @@
                 p.innerText = "Registered on " + user.start_date;
 
                 second_div.append(h4, h6, space, h6_2, space2, innerDiv, p);
-            });
 
-            users_div.appendChild(title);
-            users_div.appendChild(rowDiv);
+                users_div.append(first_div, second_div)
+            });
         })();
     });
 </script>
 
-
-</script>
 
 
 <body>
@@ -107,17 +89,17 @@
 <section class="management-page" id="management-content">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-12 left-side" id="management-content2">
-                <h2>Active users<a href="javascript:" id="refresh"> <i onclick="reload()" style="color: #8d8d8d; font-size: x-large" class="fa fa-refresh"></i></a></h2>
-                <div class="row">
-
+            <div class="col-lg-6 col-md-12 left-side">
+                <h2>Active users<a href="javascript:" id="refresh"> <i onclick="reload()"
+                                                                       style="color: #8d8d8d; font-size: x-large"
+                                                                       class="fa fa-refresh"></i></a></h2>
+                <div class="row" id="management-content2">
                 </div>
             </div>
 
             <div class="col-lg-6 col-md-12">
                 <div class="row">
                     <div class="col-md-12">
-
                         <div class="right-side">
                             <h3>Add user</h3>
                             <figure>

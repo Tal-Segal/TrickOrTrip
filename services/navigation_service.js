@@ -1,4 +1,4 @@
-home_page = {'id': 'home', 'href': '#home', 'url': '/home', 'description': 'Home'};
+home_page = {'id': 'home', 'href': '#index', 'url': '/home', 'description': 'Home'};
 management_page = {'id': 'management', 'href': '#management', 'url': '/management', 'description': 'Management'};
 gallery_page = {'id': 'gallery', 'href': '#gallery', 'url': '/gallery', 'description': 'Gallery'};
 about_us_page = {'id': 'about_us', 'href': '#about_us', 'url': '/about_us', 'description': 'About'};
