@@ -1,5 +1,9 @@
-<script src="public/utils/addUser.js"></script>
+<script src="public/utils/deleteUser.js"></script>
 <script>
+    function onDelete(userName) {
+        deleteUser(userName);
+    }
+
     $('#management-content').ready(function () {
         (async function () {
             let users_div = document.getElementById('management-content2');
@@ -48,13 +52,16 @@
                 innerDiv.className = "btn-group";
                 let button1 = document.createElement('button');
                 button1.value = user.username;
-                //button1.onclick = deleteUser(this);
+                button1.addEventListener("click", function () {
+                    onDelete(user.username);
+                });
                 button1.className = "btn btn-primary";
                 button1.style.backgroundColor = "gray";
                 let i = document.createElement('i');
                 i.className = "fa fa-trash";
                 i.setAttribute('aria-hidden', 'true');
                 button1.innerText = "Delete";
+                button1.id = "deleteButton";
                 button1.appendChild(i);
                 let button2 = document.createElement('button');
                 button2.value = user.username;
@@ -158,6 +165,9 @@
                 </ul>
             </div>
         </div>
+    </div>
+    <div class="modal-body">
+        <h3 id="deleteModalBody"></h3>
     </div>
 </section>
 <!--/.Management-Section -->

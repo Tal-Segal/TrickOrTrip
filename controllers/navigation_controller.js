@@ -12,9 +12,11 @@ const getNavigationInfo = async (req, res) => {
     let user = await management_service.getUserByUsername(req.query.username);
 
     console.log("user: " + user);
-    console.log("username: " + req);
+    console.log("username: " + req.query.username);
 
     if (user !== undefined) {
+        console.log("user role is: " + user.role);
+
         if (user.role === "customer") {
             info = navigation_service.getCustomerView();
         }
@@ -24,6 +26,9 @@ const getNavigationInfo = async (req, res) => {
         else { // employee
             info = navigation_service.getEmployeeView();
         }
+    }
+    else {
+        console.log("user is undefined");
     }
 
     res.json(info);

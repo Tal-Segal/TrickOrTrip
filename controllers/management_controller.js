@@ -24,10 +24,17 @@ const editUser = async (req, res) => {
 }
 
 const deleteUser = async (req, res) => {
-    let body = req.body;
-    let imageUrl = req.file ? 'images/' + req.file.filename : body.source;
-    let poster = [imageUrl, body.text, body.creation_date];
-    await service.deleteUser(poster);
+
+    let p = req.params;
+    let user = await service.getUserByUsername(p.name);
+
+    await service.deleteUser(user._id);
+
+    if (typeof user !== "string") {
+        res.sendStatus(200);
+    } else {
+        res.sendStatus(404);
+    }
 }
 
 const getManagementView = (req, res) => {
