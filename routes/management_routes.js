@@ -5,7 +5,7 @@ const { getManagementView, getAllUsers, addUser, deleteUser, editUser } = requir
 router.get('/data', getAllUsers);
 router.post('/add', addUser);
 router.delete('/delete/:name', deleteUser);
-router.put('/update/:name/:role', editUser);
+router.put('/edit/:name/:role', editUser);
 router.get('/', getManagementView);
 
 module.exports = router;

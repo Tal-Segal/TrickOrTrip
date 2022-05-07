@@ -1,7 +1,20 @@
 <script src="public/utils/deleteUser.js"></script>
+<script src="public/utils/editUser.js"></script>
+
 <script>
     function onDelete(userName) {
         deleteUser(userName);
+    }
+
+    function beforeEdit(userName) {
+        $("#editModalBody").html(userName);
+    }
+
+    function onEdit() {
+        let role = document.getElementById('editRole').value;
+        let username = document.getElementById("editModalBody").innerText;
+
+        editUser(username, role);
     }
 
     $('#management-content').ready(function () {
@@ -61,13 +74,14 @@
                 i.className = "fa fa-trash";
                 i.setAttribute('aria-hidden', 'true');
                 button1.innerText = "Delete";
-                button1.id = "deleteButton";
                 button1.appendChild(i);
                 let button2 = document.createElement('button');
                 button2.value = user.username;
-                //button2.onclick = sendUserToModal(this);
-                //button2.data = "modal"; //?
-                //button2.data = "#myModal2"; //?
+                button2.setAttribute("data-toggle", "modal");
+                button2.setAttribute("data-target", ".edit-user");
+                button2.addEventListener("click", function () {
+                    beforeEdit(user.username);
+                });
                 button2.className = "btn btn-primary";
                 button2.style.backgroundColor = "gray";
                 let i_2 = document.createElement('i');
@@ -166,9 +180,49 @@
             </div>
         </div>
     </div>
-    <div class="modal-body">
-        <h3 id="deleteModalBody"></h3>
-    </div>
+
 </section>
+
+<!--edit user-->
+<div class="modal fade bs-modal-sm edit-user" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="myTabContent2" class="tab-content">
+
+                    <div class="active tab-pane in" id="updateModal">
+                        <form class="form-horizontal" id="updateForm" name="updateForm">
+                            <fieldset>
+                                <div class="group">
+                                    <select id="editRole" name="editRole" onChange=”combo(this, ’demo’)”>
+                                        <option>admin</option>
+                                        <option>employee</option>
+                                        <option>costumer</option>
+                                    </select>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="update"></label>
+                                    <div class="controls">
+                                        <button type="submit" onclick="onEdit()" id="update" name="update"
+                                                class="btn btn-primary btn-block">Update
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div style="display:none" class="modal-body" id="editModalBody">
+
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--/.Management-Section -->
 </body>

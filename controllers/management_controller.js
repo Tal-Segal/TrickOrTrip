@@ -19,7 +19,8 @@ const addUser = async (req, res) => {
 
 const editUser = async (req, res) => {
     let params = req.params;
-    let user = await service.getUserByUsername(params.username);
+    let user = await service.getUserByUsername(params.name);
+    console.log(params);
     await service.editUser(user._id, { role: params.role });
 }
 
