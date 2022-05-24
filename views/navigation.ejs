@@ -20,6 +20,17 @@
                 a.url = bar_item.url;
                 a.textContent = bar_item.description;
 
+                //Try to find a way to generate it by className (nav-link nav-item)
+                a.style.color = "#f9e43f";
+                a.style.paddingRight = "20px";
+                a.style.paddingLeft = "20px";
+                a.style.display = "block";
+                a.style.padding = ".1rem 1rem";
+                a.style.textTransform = "uppercase";
+                a.style.fontSize = "14px";
+                a.style.fontWeight = "500";
+                a.style.letterSpacing = "0.5px";
+
                 /*$('li').addClass('nav-item');
                 $('a').addClass('nav-link');
 
@@ -54,19 +65,24 @@
                 let li = document.createElement('li');
                 li.className = 'nav-item';
 
-                /*
-                color: #f9e43f;
-                background-color: rgba(255, 255, 255, .1);
-                */
-                li.style.color = "#f9e43f";
-
-
-
                 let a = document.createElement('a');
                 a.href = "";
                 a.id = "logout-tab";
                 a.className = 'nav-link';
                 a.innerText = "Logout";
+
+                //to remove once fixed
+                a.style.color = "#f9e43f";
+                a.style.paddingRight = "20px";
+                a.style.paddingLeft = "20px";
+                a.style.display = "block";
+                a.style.padding = ".1rem 1rem";
+                a.style.textTransform = "uppercase";
+                a.style.fontSize = "14px";
+                a.style.fontWeight = "500";
+                a.style.letterSpacing = "0.5px";
+
+
                 a.onclick = function () {
                     $('li a').removeClass('active');
                     $(this).addClass('active');
@@ -86,6 +102,18 @@
                 a.id = "login-tab";
                 a.className = 'nav-link';
                 a.innerText = "Login";
+
+                //to remove once fixed
+                a.style.color = "#f9e43f";
+                a.style.paddingRight = "20px";
+                a.style.paddingLeft = "20px";
+                a.style.display = "block";
+                a.style.padding = ".1rem 1rem";
+                a.style.textTransform = "uppercase";
+                a.style.fontSize = "14px";
+                a.style.fontWeight = "500";
+                a.style.letterSpacing = "0.5px";
+
                 li.appendChild(a);
                 nav_bar.appendChild(li);
 
