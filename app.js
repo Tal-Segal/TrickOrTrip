@@ -1,3 +1,7 @@
+//react
+const react = require("react");
+
+
 const path = require("path");
 const express = require("express");
 const cookieParser = require('cookie-parser');
@@ -17,7 +21,9 @@ const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+//app.set('view engine', 'ejs');
 
 
 app.use(express.json());

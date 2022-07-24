@@ -48,7 +48,7 @@
 <!--Navbar -->
 <nav id="navigation-bar" class="navbar navbar-expand-lg navbar-dark cyan fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="views/index.ejs">
+        <a class="navbar-brand" href="views/index.html">
             <img src="public/images/nav-logo.png" alt="nav-logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
@@ -184,7 +184,8 @@
 
                                 <!-- Password input-->
                                 <div class="group">
-                                    <input id="password2" name="password" required="" class="input" type="password"><span
+                                    <input id="password2" name="password" required="" class="input"
+                                           type="password"><span
                                         class="highlight"></span><span class="bar"></span>
                                     <label class="label" for="password">Password</label>
                                 </div>
@@ -193,7 +194,7 @@
                                 <!-- Image input-->
                                 <div class="group">
                                     <label class="label">Image</label>
-                                    <br />
+                                    <br/>
                                     <input id="image" name="image" required="" class="input" type="file"><span
                                         class="highlight"></span><span class="bar"></span>
                                     <label class="label" for="image"></label>
@@ -205,7 +206,8 @@
                                 <div class="control-group">
                                     <label class="control-label" for="confirmsignin"></label>
                                     <div class="controls">
-                                        <button type="submit" onclick="signup(form)" id="confirmsignup" name="confirmsignup"
+                                        <button type="submit" onclick="signup(form)" id="confirmsignup"
+                                                name="confirmsignup"
                                                 class="btn btn-primary btn-block">Sign Up
                                         </button>
                                     </div>
@@ -257,7 +259,6 @@
 </div>
 
 
-
 <!-- Footer -->
 <footer>
     <section class="footer-top">
@@ -298,13 +299,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul>
-                        <li><a href="views/index.ejs">Home</a></li>
+                        <li><a href="views/index.html">Home</a></li>
                         <li class="hidden">/</li>
-                        <li><a href="views/about_us.ejs">About Us</a></li>
+                        <li><a href="about_us.html">About Us</a></li>
                         <li class="hidden">/</li>
                         <li><a onclick="$('#nav_bar').load('/navigation')">Gallery</a></li>
                         <li class="hidden">/</li>
-                        <li><a href="views/contact.ejs">Contact</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -321,6 +322,12 @@
 <script src="public/utils/animate.js"></script>
 <script src="public/utils/custom.js"></script>
 <script src="app.js"></script>
+
+
+<!-- React -->
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="components/index_component.js" ></script>
 
 
 <script>
